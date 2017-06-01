@@ -1,4 +1,4 @@
-# Pythian - DevOps Consultant Challenge
+# Pythian - DevOps Technical Project
 
 ## Overview
 
