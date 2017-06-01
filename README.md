@@ -4,7 +4,7 @@
 
 At Pythian, our DevOps Consultants must have a wide depth of knowledge across several key technologies.  The team expects that its members will be curious and constantly learning.  We do this to improve our skills so that we can deliver value to our clients, and be thought leaders within their organizations, as well as within Pythian.
 
-Part of our interview process for prospective candidates is this techical challenge.  It exists to give you an opportunity to show off your skillset.  It also allows us to see how you approach a new problem, and the type of solution that you create.
+Part of our interview process for prospective candidates is this technical challenge.  It exists to give you an opportunity to show off your skillset.  It also allows us to see how you approach a new problem, and the type of solution that you create.
 
 You can expect to spend 1-3 hours on this challenge.
 
