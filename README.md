@@ -14,8 +14,8 @@ For this challenge you'll be building a set of Docker images that run a simple R
 
 In the first container, implement a simple REST API using the language and toolset of your choice (Python, Node.js, etc...).  The REST API should support GET requests on two endpoints
 
-    * /cat
-    * /history
+  * /cat
+  * /history
     
 ### /cat endpoint
 
