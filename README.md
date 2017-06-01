@@ -24,9 +24,9 @@ The `/cat` endpoint should return a JSON object representing an image from the [
 ```
 {
   "image": {
-		  "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zHp1qcxyrro1_1280.jpg",
-		  "id": "c11",
-		  "source_url": "http://thecatapi.com/?id=c11"
+    "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zHp1qcxyrro1_1280.jpg",
+    "id": "c11",
+    "source_url": "http://thecatapi.com/?id=c11"
   }
 }
 ```
@@ -39,18 +39,18 @@ The `/history` endpoint should return a JSON object representing all of the prev
 
 ```
 {
-	"images": [
-	  {
-			  "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zHp1qcxyrro1_1280.jpg",
-			  "id": "c11",
-			  "source_url": "http://thecatapi.com/?id=c11"
-		 },
-		 {
-			  "url": "http://thecatapi.com/?id=65s",
-			  "id": "65s",
-			  "source_url": "http://24.media.tumblr.com/tumblr_luu4l5AmkP1qzxrnuo1_1280.jpg"
-		 }
-	]
+  "images": [
+    {
+      "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zhp1qcxyrro1_1280.jpg",
+      "id": "c11",
+      "source_url": "http://thecatapi.com/?id=c11"
+    },
+    {
+      "url": "http://thecatapi.com/?id=65s",
+      "id": "65s",
+      "source_url": "http://24.media.tumblr.com/tumblr_luu4l5amkp1qzxrnuo1_1280.jpg"
+    }
+  ]
 }
 ```
 
