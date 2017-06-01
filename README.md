@@ -10,23 +10,61 @@ You can expect to spend 1-3 hours on this challenge.
 
 ## What you'll be building
 
-For this challenge, you'll be building a Vagrantfile that installs and configures an application of your choice.  It's highly suggested that you use a configuration management tool, like Puppet; Chef; DSC; Salt; or Ansible, to perform the configuration of your VM, versus a scripting language like Bash or Powershell.  Use the best tool for the job, but consider at least performing some configuration with a configuration management tool, as we use them regularly in our work.
+For this challenge you'll be building a set of Docker images that run a simple REST API and a persistent data backend (the data backend doesn't need to store data beyond the life of the container).
 
-We've received challenges that install Wordpress, IIS, or even Apache.  Use what you know.
+In the first container, implement a simple REST API using the language and toolset of your choice (Python, Node.js, etc...).  The REST API should support GET requests on two endpoints
 
-You'll also be writing a simple script to query http://checkip.dyndns.org, and append the output to a file.  This script can be written in the language of your choice, and should be created on your vagrant box when running `vagrant up`.  Feel free to install any dependencies your script needs via your Vagrantfile.
+    * /cat
+    * /history
+    
+### /cat endpoint
 
-The script should append output to the file in the following format.
+The `/cat` endpoint should return a JSON object representing an image from the [Cat API](http://thecatapi.com/docs.html).  When a GET request is made to your `/cat` endpoint, your API backend should query the Cat API for a new image and return the details in the following JSON format.
 
-`<datetimestamp> | <script output>`
+```
+{
+  "image": {
+		  "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zHp1qcxyrro1_1280.jpg",
+		  "id": "c11",
+		  "source_url": "http://thecatapi.com/?id=c11"
+  }
+}
+```
 
-Here is a bulleted list to help with the requirements.
+Additionally, the details of the returned cat image should be stored so that it can be later recalled by the `/history` endpoint.  The storage backend should be a database or key/value storage platform like Redis.  The storage solution should be running in a separate container than the REST API.
 
-  * Use one of the included Vagrantfile files to construct a VM.
-  * Modify the Vagrantfile to install a web app of your choice.
-  * Modify the Vagrantfile to configure the web app and OS.
-  * Create a script that queries `checkip.dyndns.org`, and appends the output to a file (see the format requirements above).
-  * Create a text document that explains how your script
+### /history endpoint
+
+The `/history` endpoint should return a JSON object representing all of the previously queried images from the Cat API.  Your software should read from your persistent storage container and return a list of cat images in the following format.
+
+```
+{
+	"images": [
+	  {
+			  "url": "http://24.media.tumblr.com/tumblr_m3ay3e1zHp1qcxyrro1_1280.jpg",
+			  "id": "c11",
+			  "source_url": "http://thecatapi.com/?id=c11"
+		 },
+		 {
+			  "url": "http://thecatapi.com/?id=65s",
+			  "id": "65s",
+			  "source_url": "http://24.media.tumblr.com/tumblr_luu4l5AmkP1qzxrnuo1_1280.jpg"
+		 }
+	]
+}
+```
+
+The idea here is that we can run your images in Docker (hopefully using docker-compose) and then hit your `/cat` and `/history` endpoints using a simple tool like curl or Postman.
+
+### Configuration
+
+Please don't include any usernames, passwords, or API keys in your solution.  Instead, provide a way for us to provide those details when we launch containers from your images.  Relevant documentation should be provided.
+
+Please include as many parameters as you'd like, but be sure to at least require that a Cat API key be passed in when launching an API container.
+
+### Other Thoughts
+
+Because this is an opportunity to show off your skills, it's better to use a basic Docker image that you then configure yourself.  For example, it might be easier to use a container that has MySQL pre-installed.  This would normally be a fine way to proceed, but in this case, it doesn't give you the opportunity to show that you know how to automatically install and configure a database.  Keep this in mind when building your Docker images.
 
 ## Review Guidelines
 
@@ -46,14 +84,3 @@ We evaluate challenge responses using the following criteria
 We prefer that final solutions be delivered via a public GitHub repository.  Please note that due to the nature of public GitHub repositories, your solution will be publicly available for as long as you keep the repository.
 
 Other arrangements can be made for circumstances in which candidates are not comfortable releasing their code via a publicly accessible repository.  Please let us know if you would prefer an alternate method of sending your solution.  It's preferred that the version control history be maintained so that it may be reviewed.
-
-## Technical Guidelines
-
-In order to speed up the review process, we ask that you adhere to the following guidelines.
-
-  * Use Vagrant 1.8.4 or greater.
-  * Create a text document in your project folder that contains the following information
-    * The version of Vagrant that you used for testing.
-    * Any Vagrant plugins that need to be installed to run your solution.
-  * Use the windows or linux box that's included in the default Vagrantfile files.
-    * If you must use a different box, update the `config.vm.box_url` variable in the Vagrantfile.
